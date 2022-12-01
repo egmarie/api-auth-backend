@@ -1,20 +1,21 @@
 const AWS = require('aws-sdk')
-const util = require('./utils/util')
-const bcrypt = require('./bcryptjs');
+const util = require('../utils/util')
+const bcrypt = require('bcryptjs');
 
 AWS.config.update({
     region: 'us-east-1'
 })
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const userTable = 'jinkidjda' // defined in Dynamo db
+const userTable = 'auth-practice-users' // defined in Dynamo db
 
 async function register(userInfo) {
     const name = userInfo.name;
+    const username = userInfo.username;
     const email = userInfo.email;
     const password = userInfo.password;
 
-    if(!email || !name || !password) {
+    if(!email || !name || !password || !username) {
         return util.buildResponse(401, {
             message: 'All fields are required'
         })

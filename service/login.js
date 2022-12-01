@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk')
 const util = require('../utils/util')
-const bcrypt = require('./bcryptjs');
+const bcrypt = require('bcryptjs');
 
 const { util } = require("webpack");
 
@@ -9,7 +9,7 @@ AWS.config.update({
 })
 const auth = require('../utils/auth')
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const userTable = 'jinkidjda' // defined in Dynamo db
+const userTable = 'auth-practice-users' // defined in Dynamo db
 
 
 async function login(user) {
