@@ -26,6 +26,7 @@ async function register(userInfo) {
         return util.buildResponse(401, {
             message: 'username already exists in our database. Please choose a different username.'
         })
+        
     }
 
     const encryptedPW = bcrypt.hashSync(password.trim(), 10)
@@ -42,7 +43,7 @@ async function register(userInfo) {
             return util.buildResponse(503, {message: 'Server Error. Please try again later.'})
         }
       return util.buildResponse(200, { username: username }) 
-
+    
 async function getUser(username) {
     const params = {
         TableName: userTable,

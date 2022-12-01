@@ -4,7 +4,10 @@ function generateToken(userInfo) {
     if (!userInfo) {
         return null
     }
-    
+    const userInfo = {
+        username: userInfo.username,
+        email: userInfo.email
+    }
     return jwt.sign(userInfo, process.env.JWT_SECRET, {
         expiresIn: '1h'
     })

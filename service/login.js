@@ -25,11 +25,11 @@ async function login(user) {
 
     if (!dynamoUser || !dynamoUser.username) {
         return util.buildResponse(403, { 
-            message: 'username and password are required.'
+            message: 'user does not exist.'
         })
     }
 
-    if (!bcrypt.compareSync(password, dynamo.password)) {
+    if (!bcrypt.compareSync(password, dynamoUser.password)) {
         return util.buildResponse(403, { message: 'Either the username or password are incorrect.'})
     }
 
