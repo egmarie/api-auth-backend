@@ -6,6 +6,10 @@
     "bcryptjs": "2.4.3",
     "jsonwebtoken": "8.5.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egmarie/auth-api-backend.git"
+  },
   "description": "login practice with aws",
   "main": "index.js",
   "scripts": {
