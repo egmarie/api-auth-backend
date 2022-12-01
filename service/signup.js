@@ -33,6 +33,7 @@ async function register(userInfo) {
     const user = {
         name: name,
         email: email,
+        username: username.toLowerCase().trim(),
         password: encryptedPW
     }
 
@@ -40,9 +41,9 @@ async function register(userInfo) {
         if (!saveUserResponse) {
             return util.buildResponse(503, {message: 'Server Error. Please try again later.'})
         }
-      return util.buildResponse(200, { name: name }) 
+      return util.buildResponse(200, { username: username }) 
 
-async function getUser(name) {
+async function getUser(username) {
     const params = {
         TableName: userTable,
         Key: {
