@@ -1,20 +1,21 @@
-const registerService = require('./service/signup')
-const loginService = require('./service/login')
-const verifyService = require('./service/verify')
-const util = require('./utils/util')
+const registerService = require('./service/register');
+const loginService = require('./service/login');
+const verifyService = require('./service/verify');
+const util = require('./utils/util');
 
-const healthPath = '/health'
-const signupPath = '/signup'
-const loginPath = '/login'
-const verifyPath = '/verify'
+const healthPath = '/health';
+const registerPath = '/register';
+const loginPath = '/login';
+const verifyPath = '/verify';
 
-export const handler = async (e) => {
+//export const handler
+exports.handler = async (e) => {
     let response;
     switch(true) {
         case e.httpMethod === 'GET' && e.path === healthPath:
             response = util.buildResponse(200)
             break;
-        case e.httpMethod === 'POST' && e.path === signupPath:
+        case e.httpMethod === 'POST' && e.path === registerPath:
             const registerBody = JSON.parse(e.body)
             response = await registerService.register(registerBody)
             break;

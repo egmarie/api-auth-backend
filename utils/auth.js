@@ -1,14 +1,14 @@
 const jwt = require('jsonwebtoken');
 
-function generateToken(userInfo) {
-    if (!userInfo) {
+function generateToken(userInfo1) {
+    if (!userInfo1) {
         return null
     }
-    const userInfo = {
-        username: userInfo.username,
-        email: userInfo.email
+    const userInfo3 = {
+        username: userInfo1.username,
+        email: userInfo1.email
     }
-    return jwt.sign(userInfo, process.env.JWT_SECRET, {
+    return jwt.sign(userInfo3, process.env.JWT_SECRET, {
         expiresIn: '1h'
     })
 }
@@ -35,5 +35,5 @@ function verifyToken(username, token) {
     })
 }
 
-module.exports.generateToken = generateToken
-module.exports.verifyToken = verifyToken
+module.exports.generateToken = generateToken;
+module.exports.verifyToken = verifyToken;

@@ -1,14 +1,15 @@
-const AWS = require('aws-sdk')
-const util = require('../utils/util')
+//var AWS  = require("aws-sdk");
+const { DynamoDB } = require("@aws-sdk/client-dynamodb");
+const util = require('../utils/util');
 const bcrypt = require('bcryptjs');
 
-const { util } = require("webpack");
-
-AWS.config.update({
-    region: 'us-east-1'
-})
+// AWS.config.update({
+//     region: 'us-east-1'
+// })
 const auth = require('../utils/auth')
-const dynamodb = new AWS.DynamoDB.DocumentClient();
+const dynamodb = new DynamoDB.DocumentClient({
+    region: 'us-east-1'
+});
 const userTable = 'auth-practice-users' // defined in Dynamo db
 
 
@@ -33,15 +34,15 @@ async function login(user) {
         return util.buildResponse(403, { message: 'Either the username or password are incorrect.'})
     }
 
-    const userInfo = {
+    const userInfo2 = {
         username: dynamoUser.username,
         name: dynamoUser.name
     }
 
-    const token = auth.generateToken(userInfo)
+    const token = auth.generateToken(userInfo2)
 
     const response = {
-        user: userInfo,
+        user: userInfo2,
         token: token
     }
     return util.buildResponse(200)
